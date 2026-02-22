@@ -14,5 +14,6 @@
 
 ```bash
 ln -s $HOME/Documents/DevProjects/dotfiles/.emacs.d $HOME/.emacs.d
+ln -s $HOME/Documents/DevProjects/dotfiles/.doom.d $HOME/.doom.d
 ln -s $HOME/Documents/DevProjects/dotfiles/.config/nvim $HOME/.config/nvim
 ```
