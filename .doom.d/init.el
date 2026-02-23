@@ -201,6 +201,7 @@
         (mapconcat 'identity
                    '(
                         ;;MAC
+                        "/opt/homebrew/opt/grep/libexec/gnubin"
                         "/Users/michaelfritsch/.emacs.d/bin"
                         "/Users/michaelfritsch/.cabal/bin"
                         "/Users/michaelfritsch/.ghcup/bin"
