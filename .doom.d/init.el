@@ -196,3 +196,39 @@
        :config
        ;;literate
        (default +bindings +smartparens))
+
+(setenv "PATH"
+        (mapconcat 'identity
+                   '(
+                        ;;MAC
+                        "/Users/michaelfritsch/.emacs.d/bin"
+                        "/Users/michaelfritsch/.cabal/bin"
+                        "/Users/michaelfritsch/.ghcup/bin"
+                        "/Users/michaelfritsch/.deno/bin"
+                        "/opt/homebrew/opt/mysql-client/bin"
+                        "/Users/michaelfritsch/.bun/bin"
+                        "/Users/michaelfritsch/.rd/bin"
+                        "/Library/Frameworks/Python.framework/Versions/3.12/bin"
+                        "/opt/homebrew/bin"
+                        "/opt/homebrew/sbin"
+                        "/usr/local/bin"
+                        "/System/Cryptexes/App/usr/bin"
+                        "/usr/bin"
+                        "/bin"
+                        "/usr/sbin"
+                        "/sbin"
+                        "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin"
+                        "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin"
+                        "/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin"
+                        "/opt/pmk/env/global/bin"
+                        "/opt/X11/bin"
+                        "/Library/Apple/usr/bin"
+                        "/Library/TeX/texbin"
+                        "/Applications/VMware Fusion.app/Contents/Public"
+                        "/usr/local/share/dotnet"
+                        "~/.dotnet/tools"
+                        "/Users/michaelfritsch/.cargo/bin"
+                        "/Applications/Ghostty.app/Contents/MacOS"
+                        "/Users/michaelfritsch/Library/Application Support/JetBrains/Toolbox/script"
+                        ) ":"))
+(setq exec-path (split-string (getenv "PATH") path-separator))
