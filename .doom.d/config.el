@@ -79,3 +79,12 @@
 (map! :leader
       "c n" #'next-error
       "c p" #'previous-error)
+
+;; line wrap proper cursor control
+(map!
+ :nvm "k"   #'evil-previous-visual-line
+ :o   "k"   #'evil-previous-line
+ :nvm "j" #'evil-next-visual-line
+ :o   "j" #'evil-next-line
+ :nvm "<home>" #'evil-beginning-of-visual-line
+ :nvm "<end>"  #'evil-end-of-visual-line)

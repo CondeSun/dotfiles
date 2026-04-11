@@ -234,4 +234,13 @@
                      ) ":"))
 (setq exec-path (split-string (getenv "PATH") path-separator))
 
+;; set fullscreen by default
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+;; line wrap for long compile buffer messages
+(after! compile
+  (defun compile-mode-hook ()
+    (setq truncate-lines nil)
+    (setq-local truncate-partial-width-windows nil))
+
+  (add-hook 'compilation-mode-hook #'compile-mode-hook))
