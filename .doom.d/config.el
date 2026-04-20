@@ -80,6 +80,9 @@
       "c n" #'next-error
       "c p" #'previous-error)
 
+(map! :leader
+      "D" #'devdocs-lookup)
+
 ;; line wrap proper cursor control
 (map!
  :nvm "k"   #'evil-previous-visual-line
