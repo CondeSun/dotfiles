@@ -91,3 +91,16 @@
  :o   "j" #'evil-next-line
  :nvm "<home>" #'evil-beginning-of-visual-line
  :nvm "<end>"  #'evil-end-of-visual-line)
+
+;; destroy multi cursors on ESC
+(setq evil-mc-undo-cursors-on-keyboard-quit t) ;; remember you can use the gz namespace for multiple cursors
+
+(after! evil-multiedit
+  (evil-multiedit-default-keybinds)) ;; you can mark a word in visual mode and press R, then all matches are selected, you can navigate in normal mode and toggle a marked word with enter
+
+;; Convinient Keybindings for Emacs Narrowing, for focusing the buffer on the things that matters, great for visual mode R and Multi Cursor on a narrowed down buffer area
+(map! :leader
+      :prefix "v"
+      :desc "Narrow to region" "n" #'narrow-to-region
+      :desc "Widen buffer"     "w" #'widen
+      :desc "Narrow to defun"  "f" #'narrow-to-defun)
