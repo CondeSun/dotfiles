@@ -104,3 +104,13 @@
       :desc "Narrow to region" "n" #'narrow-to-region
       :desc "Widen buffer"     "w" #'widen
       :desc "Narrow to defun"  "f" #'narrow-to-defun)
+
+
+;; enable vim bindings in minibuffer and command mode
+(setq evil-want-minibuffer t)
+;; enable escape in minibuffer to switch to normal mode
+(define-key minibuffer-local-map (kbd "<escape>") 'evil-normal-state)
+(with-eval-after-load 'corfu
+  ;; Exclude the minibuffer from global corfu auto-completion
+  ;; This needs to happen to prevent corfu completion errors
+  (setq global-corfu-modes '(:not minibuffer-mode)))
