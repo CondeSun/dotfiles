@@ -92,21 +92,21 @@
        ;;ansible
        ;;biblio            ; Writes a PhD for you (citation needed)
        ;;collab            ; buffers with friends
-       debugger          ; FIXME stepping through code, to help you add bugs
+       (debugger +lsp)          ; FIXME stepping through code, to help you add bugs ; NOTE: +lsp enables support for Debug Adapter Protocol
        direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ein               ; tame Jupyter notebooks with emacs
        (eval +overlay)     ; run code, run (also, repls)
        lookup              ; navigate your code and its documentation
-       ;;llm               ; when I said you needed friends, I didn't mean...
+       llm               ; when I said you needed friends, I didn't mean...
        (lsp +eglot)      ; M-x vscode
        magit             ; a git porcelain for Emacs
-       ;;make              ; run make tasks from Emacs
+       make              ; run make tasks from Emacs
        ;;pass              ; password manager for nerds
        pdf               ; pdf enhancements
        terraform         ; infrastructure as code
-       ;;tmux              ; an API for interacting with tmux
+       tmux              ; an API for interacting with tmux
        ;;tree-sitter       ; syntax and parsing, sitting in a tree... -> disabled using builtin treesit in emacs
        upload            ; map local to remote projects via ssh/ftp
 
@@ -175,7 +175,7 @@
        sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;sml
        ;;solidity          ; do you need a blockchain? No.
-       ;;swift             ; who asked for emoji variables?
+       ;;swift             ; who asked for emoji variables
        ;;terra             ; Earth and Moon in alignment for performance.
        (web +html +css +lsp) ; the tubes
        yaml              ; JSON, but readable
@@ -201,6 +201,8 @@
         (mapconcat 'identity
                    '(
                      ;;MAC
+                     "/Library/Developer/CommandLineTools/usr/bin/lldb-dap"
+                     "/opt/homebrew/opt/llvm/bin"
                      "/opt/homebrew/opt/grep/libexec/gnubin"
                      "/Users/michaelfritsch/.emacs.d/bin"
                      "/Users/michaelfritsch/.cabal/bin"
