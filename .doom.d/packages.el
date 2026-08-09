@@ -55,3 +55,5 @@
 
 (package! devdocs)
 ;;(package! multiple-cursors) we use doom multiple cursors for that
+
+(package! exec-path-from-shell)
