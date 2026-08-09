@@ -197,10 +197,6 @@
        ;;literate
        (default +bindings +smartparens))
 
-(use-package exec-path-from-shell
-  :ensure
-  :init (exec-path-from-shell-initialize))
-
 ;; set fullscreen by default
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 

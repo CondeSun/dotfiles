@@ -116,13 +116,19 @@
   (setq global-corfu-modes '(:not minibuffer-mode)))
 
 
+;; load $HOME from shell, we must do that here, otherwise we would break the doom init logic,
+(use-package exec-path-from-shell
+  :ensure
+  :defer nil
+  :init (exec-path-from-shell-initialize))
+
 ;; NOTE: IMPORTANT: we should disable the macos code signing security: 'sudo DevToolsSecurity --enable', keep in mind that we usually want this!
-;; The reason is that we are trying to attach to the binary process, which macos usually prohibits without proper code signange (run codesign )
+;; The reason is that we are trying to attach to the binary process, which macos usually prohibits without proper code signange (run codesign ) and fails with status code 9
 (after! dape
   ;; dabe C lldb template
   (add-to-list 'dape-configs
                `(lldb-c
-                 modes (c-mode c++-mode c-ts-mode c++-ts-mode)
+                 modes (c-mode c++-mode c-ts-mode c++-ts-mode) gg
                  command "lldb-dap"
                  :type "lldb-dap"
                  :request "launch"
