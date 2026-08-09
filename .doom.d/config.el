@@ -128,7 +128,7 @@
   ;; dabe C lldb template
   (add-to-list 'dape-configs
                `(lldb-c
-                 modes (c-mode c++-mode c-ts-mode c++-ts-mode) gg
+                 modes (c-mode c++-mode c-ts-mode c++-ts-mode)
                  command "lldb-dap"
                  :type "lldb-dap"
                  :request "launch"
