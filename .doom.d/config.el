@@ -114,3 +114,32 @@
   ;; Exclude the minibuffer from global corfu auto-completion
   ;; This needs to happen to prevent corfu completion errors
   (setq global-corfu-modes '(:not minibuffer-mode)))
+
+
+;; NOTE: IMPORTANT: we should disable the macos code signing security: 'sudo DevToolsSecurity --enable', keep in mind that we usually want this!
+;; The reason is that we are trying to attach to the binary process, which macos usually prohibits without proper code signange (run codesign )
+(after! dape
+  ;; dabe C lldb template
+  (add-to-list 'dape-configs
+               `(lldb-c
+                 modes (c-mode c++-mode c-ts-mode c++-ts-mode)
+                 command "lldb-dap"
+                 :type "lldb-dap"
+                 :request "launch"
+                 ;; Interactively select the binary starting at the project root
+                 :program (lambda ()
+                            (read-file-name "Select C binary (remember use -g): "
+                                            (concat (dape-cwd) ".")))
+                 :cwd dape-cwd))
+
+  ;; dape Rust lldb template
+  (add-to-list 'dape-configs
+               `(lldb-rust
+                 modes (rust-mode rust-ts-mode rustic-mode)
+                 command "lldb-dap"
+                 :type "lldb-dap"
+                 :request "launch"
+                 :program (lambda ()
+                            (read-file-name "Select Rust binary: "
+                                            (concat (dape-cwd) "target/debug/")))
+                 :cwd dape-cwd)))
