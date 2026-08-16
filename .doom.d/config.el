@@ -82,7 +82,9 @@
 ;; map lsp error jumps to code context
 (map! :leader
       "c n" #'next-error
-      "c p" #'previous-error)
+      "c p" #'previous-error
+      "c z" #'compilation-set-skip-threshold
+      )
 
 (map! :leader
       "D" #'devdocs-lookup)
