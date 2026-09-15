@@ -75,18 +75,32 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; configure the compilation minibuffer to follow the compilation output
-;; NOTE: set not 'next-error to stop at the first error
-(setq compilation-scroll-output "k")
+;; If you change the variable compilation-scroll-output to a non-nil value,
+;; the *compilation* buffer scrolls automatically to follow the output.
+;; If the value is first-error, scrolling stops when the first error appears, leaving point at that error.
+;; For any other non-nil value, scrolling continues until there is no more output.
+(defun toggle_compilation_scroll_output ()
+  "Handle Compilation Scroll Mode"
+  (interactive)
+  (if (not compilation-scroll-output)
+      (setf compilation-scroll-output "scroll_to_bottom") (setf compilation-scroll-output nil)))
+
+(map! :leader
+      :desc "Toggle Compile Scroll"
+      "t s" #'toggle_compilation_scroll_output)
 
 ;; map lsp error jumps to code context
 (map! :leader
+      :desc "Jump Next Error"
       "c n" #'next-error
+      :desc "Jump Previous Error"
       "c p" #'previous-error
-      "c z" #'compilation-set-skip-threshold
+      :desc "Skip less important Msg"
+      "c z" #'compilation-set-skip-threshold ;; important whether we should jump to warning or info msgs
       )
 
 (map! :leader
+      :desc "Devdocs Lookup"
       "D" #'devdocs-lookup)
 
 ;; line wrap proper cursor control
@@ -112,7 +126,7 @@
       :desc "Narrow to defun"  "f" #'narrow-to-defun)
 
 
-;; enable vim bindings in minibuffer and command mode
+;; enable vim bindings in minibuffer and command mode | e.g. to edit ':'-commands
 (setq evil-want-minibuffer t)
 ;; enable escape in minibuffer to switch to normal mode
 (define-key minibuffer-local-map (kbd "<escape>") 'evil-normal-state)
