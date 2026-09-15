@@ -75,6 +75,21 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+;; multiple cursor remap as default often gets overwritten by major mode
+;; NOTE: for this to work you have to mark the word with C-SPC or M(Option)-@
+(global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+(global-set-key (kbd "C->")         'mc/mark-next-like-this)
+(global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
+(global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
+(global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
+(global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
+(map! :leader
+      (:prefix-map ("c m" . "multiple-cursors")
+       :desc "Edit lines"         "l" #'mc/edit-lines
+       :desc "Mark next like this" "n" #'mc/mark-next-like-this
+       :desc "Mark prev like this" "p" #'mc/mark-previous-like-this
+       :desc "Mark all like this"  "a" #'mc/mark-all-like-this))
+
 ;; If you change the variable compilation-scroll-output to a non-nil value,
 ;; the *compilation* buffer scrolls automatically to follow the output.
 ;; If the value is first-error, scrolling stops when the first error appears, leaving point at that error.
