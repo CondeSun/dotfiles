@@ -77,18 +77,24 @@
 
 ;; multiple cursor remap as default often gets overwritten by major mode
 ;; NOTE: for this to work you have to mark the word with C-SPC or M(Option)-@
+;; NOTE: for evil mode this is usually bad practice, because you will need to use tbe built in visual mark C-SPC
 (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
 (global-set-key (kbd "C->")         'mc/mark-next-like-this)
 (global-set-key (kbd "C-<")         'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<")     'mc/mark-all-like-this)
 (global-set-key (kbd "C-\"")        'mc/skip-to-next-like-this)
 (global-set-key (kbd "C-:")         'mc/skip-to-previous-like-this)
+
+
+;; NOTE: in evil mode we can select the pattern in visual-mode and press 'R' which will match every location matching the marked pattern
+;; if we only wanna match a specific region we can narrow the buffer before hand SPC-b-'-'
+
+;; without narrowing i have added the following shortcuts
 (map! :leader
-      (:prefix-map ("c m" . "multiple-cursors")
-       :desc "Edit lines"         "l" #'mc/edit-lines
-       :desc "Mark next like this" "n" #'mc/mark-next-like-this
-       :desc "Mark prev like this" "p" #'mc/mark-previous-like-this
-       :desc "Mark all like this"  "a" #'mc/mark-all-like-this))
+      (:prefix-map ("e" . "fast-edit")
+       :desc "Mark next like this" "n" #'evil-multiedit-match-symbol-and-next
+       :desc "Mark prev like this" "p" #'evil-multiedit-match-symbol-and-prev
+       ))
 
 ;; If you change the variable compilation-scroll-output to a non-nil value,
 ;; the *compilation* buffer scrolls automatically to follow the output.
